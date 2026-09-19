@@ -1,5 +1,5 @@
 #include"types.h"
-#include"mp3_reader.h"
+#include"mp3_reader_editor.h"
 #include<stdio.h>
 #include<string.h>
 
@@ -16,11 +16,9 @@ int main(int argc, char *argv[])
        "For editing the tags-    ./mp3_tag_reader -e <filename.mp3> <modifier>\n"
        "Modifier    Function\n"
        "-t          Modify Title Tag\n"
-       "-T          Modify Track Tag\n"
        "-a          Modify Artist Tag\n"
        "-A          Modify Album Tag\n"
        "-y          Modify Year Tag\n"
-       "-c          Modify Comment Tag\n"
        "-g          Modify Genre Tag\n");
     }
     else if(res == e_reader)
@@ -52,7 +50,23 @@ int main(int argc, char *argv[])
     }
     else if(res == e_editor)
     {
-        //do_editing
+        if(read_and_validate_args(argv, &V1) == e_success)
+        {   
+            if(open_files(&V1) == e_success)
+            {
+                mp3_editor(argv, &V1);
+            }
+            else
+            {
+                printf("Failed to open .mp3 file\n");
+                return 0;
+            }
+        }
+        else
+        {
+            printf("Error: Please Enter File in .mp3 Format\n");
+            return 0;
+        }
     }
     else
     {
@@ -68,12 +82,12 @@ OperationType check_operation_type(int argc, char *argv[])
     if (argc < 2)
         return e_unsupported;
 
-    if (strcmp(argv[1], "-v") == 0)
+    if (strcmp(argv[1], "-v") == 0 )
     {
         if (argc == 3)
             return e_reader;
     }
-    else if (strcmp(argv[1], "-e") == 0)
+    else if (strcmp(argv[1], "-e") == 0 && find_tag(argv[3]) != NULL)
     {
         if (argc == 5)
             return e_editor;
