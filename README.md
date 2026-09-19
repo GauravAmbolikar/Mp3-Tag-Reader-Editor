@@ -76,7 +76,7 @@ Output:
 ```text
 Help menu for Mp3 Tag Reader and Editor:
 For viewing the tags-    ./a.out -v <filename.mp3>
-For editing the tags-    ./a.out_tag_reader -e <filename.mp3> <modifier>
+For editing the tags-    ./a.out -e <filename.mp3> <modifier> 
 
 Modifier    Function
 -t          Modify Title Tag
