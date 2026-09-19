@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
     if(res == e_format)
     {
         printf("Help menu for Mp3 Tag Reader and Editor:\n"
-       "For viewing the tags-    ./mp3_tag_reader -v <filename.mp3>\n"
-       "For editing the tags-    ./mp3_tag_reader -e <filename.mp3> <modifier>\n"
+       "For viewing the tags-    ./a.out -v <filename.mp3>\n"
+       "For editing the tags-    ./a.out -e <filename.mp3> <modifier>\n"
        "Modifier    Function\n"
        "-t          Modify Title Tag\n"
        "-a          Modify Artist Tag\n"
